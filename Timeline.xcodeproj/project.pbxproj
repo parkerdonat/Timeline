@@ -21,6 +21,12 @@
 		DD008C1A1C7D16DB0060A1C5 /* LoginSignupChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD008C191C7D16DB0060A1C5 /* LoginSignupChoiceViewController.swift */; };
 		DD008C1C1C7D17550060A1C5 /* LoginSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD008C1B1C7D17550060A1C5 /* LoginSignupViewController.swift */; };
 		DD008C1E1C7D17FD0060A1C5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD008C1D1C7D17FD0060A1C5 /* User.swift */; };
+		DD008C201C7D1FDE0060A1C5 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD008C1F1C7D1FDE0060A1C5 /* Comment.swift */; };
+		DD008C231C7D60780060A1C5 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD008C221C7D60780060A1C5 /* Like.swift */; };
+		DD008C251C7D60E60060A1C5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD008C241C7D60E60060A1C5 /* Post.swift */; };
+		DD008C271C7D61930060A1C5 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD008C261C7D61930060A1C5 /* UserController.swift */; };
+		DD10A9C61C7E745A006DF5CF /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD10A9C51C7E745A006DF5CF /* PostController.swift */; };
+		DD10A9C81C7E74ED006DF5CF /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD10A9C71C7E74ED006DF5CF /* ImageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +67,12 @@
 		DD008C191C7D16DB0060A1C5 /* LoginSignupChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupChoiceViewController.swift; sourceTree = "<group>"; };
 		DD008C1B1C7D17550060A1C5 /* LoginSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignupViewController.swift; sourceTree = "<group>"; };
 		DD008C1D1C7D17FD0060A1C5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DD008C1F1C7D1FDE0060A1C5 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		DD008C221C7D60780060A1C5 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		DD008C241C7D60E60060A1C5 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		DD008C261C7D61930060A1C5 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		DD10A9C51C7E745A006DF5CF /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		DD10A9C71C7E74ED006DF5CF /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +131,8 @@
 				DD008C171C7D157E0060A1C5 /* AddPhotoTableViewController.swift */,
 				DD008C191C7D16DB0060A1C5 /* LoginSignupChoiceViewController.swift */,
 				DD008C1B1C7D17550060A1C5 /* LoginSignupViewController.swift */,
-				DD008C1D1C7D17FD0060A1C5 /* User.swift */,
+				DD10A9C91C7E74F4006DF5CF /* Model Controllers */,
+				DD008C211C7D1FE80060A1C5 /* Model */,
 				01E3FC281BE92C7600187536 /* Main.storyboard */,
 				01E3FC2B1BE92C7600187536 /* Assets.xcassets */,
 				01E3FC2D1BE92C7600187536 /* LaunchScreen.storyboard */,
@@ -144,6 +157,27 @@
 				01E3FC461BE92C7700187536 /* Info.plist */,
 			);
 			path = TimelineUITests;
+			sourceTree = "<group>";
+		};
+		DD008C211C7D1FE80060A1C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD008C1D1C7D17FD0060A1C5 /* User.swift */,
+				DD008C1F1C7D1FDE0060A1C5 /* Comment.swift */,
+				DD008C221C7D60780060A1C5 /* Like.swift */,
+				DD008C241C7D60E60060A1C5 /* Post.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DD10A9C91C7E74F4006DF5CF /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DD008C261C7D61930060A1C5 /* UserController.swift */,
+				DD10A9C51C7E745A006DF5CF /* PostController.swift */,
+				DD10A9C71C7E74ED006DF5CF /* ImageController.swift */,
+			);
+			name = "Model Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,10 +314,16 @@
 				DD008C1C1C7D17550060A1C5 /* LoginSignupViewController.swift in Sources */,
 				DD008C1A1C7D16DB0060A1C5 /* LoginSignupChoiceViewController.swift in Sources */,
 				DD008C181C7D157E0060A1C5 /* AddPhotoTableViewController.swift in Sources */,
+				DD008C251C7D60E60060A1C5 /* Post.swift in Sources */,
 				DD008C101C7D066A0060A1C5 /* TimelineTableViewController.swift in Sources */,
+				DD10A9C81C7E74ED006DF5CF /* ImageController.swift in Sources */,
+				DD008C271C7D61930060A1C5 /* UserController.swift in Sources */,
 				01E3FC251BE92C7600187536 /* AppDelegate.swift in Sources */,
+				DD008C201C7D1FDE0060A1C5 /* Comment.swift in Sources */,
 				DD008C1E1C7D17FD0060A1C5 /* User.swift in Sources */,
 				DD008C161C7D145B0060A1C5 /* ProfileViewController.swift in Sources */,
+				DD008C231C7D60780060A1C5 /* Like.swift in Sources */,
+				DD10A9C61C7E745A006DF5CF /* PostController.swift in Sources */,
 				DD008C141C7D12B40060A1C5 /* UserSearchTableViewController.swift in Sources */,
 				DD008C121C7D083D0060A1C5 /* PostDetailTableViewController.swift in Sources */,
 			);
