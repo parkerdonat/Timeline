@@ -9,43 +9,89 @@
 import UIKit
 
 class UserSearchTableViewController: UITableViewController {
-
+    
+    
+    //MARK: - Properties
+    @IBOutlet weak var modeSegmentedControl: UISegmentedControl!
+    
+    // This array will hold the users that should be displayed in the table view. Only friends when displaying the friends list, and all users when adding a friend.
+    var usersDataSource: [User] = []
+    
+    // return a ViewMode initialized with a rawValue from the selected segment index on modeSegmentedControl
+    var mode: ViewMode {
+        get {
+            return ViewMode(rawValue: modeSegmentedControl.selectedSegmentIndex)!
+        }
+    }
+    
+    enum ViewMode: Int {
+        case Friends = 0
+        case All = 1
+        
+        // USED to fetch the correct set of User objects. We will use this in our updateViewForMode to set the usersDataSource array with either friends, or all users.
+        func users(completion: (users: [User]?) -> Void) {
+            
+            switch self {
+                
+            case .Friends: UserController.followedByUser(UserController.sharedController.currentUser, completion: { (followed) -> Void in
+                
+                completion(users: followed)
+            })
+                
+            case .All: UserController.fetchAllUsers() { (users) -> Void in
+                completion(users: users)
+                }
+            }
+        }
+    }
+    
+    //MARK: - View Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        updateViewBasedOnMode()
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // This update method calls the above func closure in the enum in order to set the array of users or if no users exist to give an empty array. Plus, reloads the tableview.
+    func updateViewBasedOnMode() {
+        mode.users { (users) -> Void in
+            if let users = users {
+                self.usersDataSource = users
+            } else {
+                self.usersDataSource = []
+            }
+            
+            self.tableView.reloadData()
+        }
     }
-
+    
+    @IBAction func updateViewBasedonMode(sender: AnyObject) {
+        
+        updateViewBasedOnMode()
+    }
+    
+    
+    
     // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return usersDataSource.count
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
-        // Configure the cell...
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("usernameCell", forIndexPath: indexPath)
+        
+        let user = usersDataSource[indexPath.row]
+
+        cell.textLabel?.text = user.username
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

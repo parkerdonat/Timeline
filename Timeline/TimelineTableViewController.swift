@@ -10,6 +10,8 @@ import UIKit
 
 class TimelineTableViewController: UITableViewController {
 
+    var posts: [Post] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +21,27 @@ class TimelineTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        if let currentUser = UserController.sharedController.currentUser {
+            if posts.count > 0 {
+                loadTimelineForUser(currentUser)
+            }
+        } else {
+            tabBarController?.performSegueWithIdentifier("noCurrentUserSegue", sender: nil)
+        }
+    }
 
+    func loadTimelineForUser(user: User) {
+        PostController.fetchTimelineForUser(user) { (posts) -> Void in
+            if let posts = posts {
+                self.posts = posts
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
