@@ -351,6 +351,11 @@
                                 </stackView>
                             </subviews>
                         </stackView>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="826-dG-99X">
+                            <rect key="frame" x="0.0" y="267" width="600" height="39"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Add Comment"/>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" textLabel="6a6-U9-bre" detailTextLabel="ze9-IJ-ESK" style="IBUITableViewCellStyleSubtitle" id="JWR-yO-EpT">
                                 <rect key="frame" x="0.0" y="223" width="600" height="44"/>
@@ -656,7 +661,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="8d0-eG-NxV"/>
+        <segue reference="Eb1-ct-WL0"/>
         <segue reference="Uyy-FK-aTh"/>
-        <segue reference="807-Gw-asH"/>
     </inferredMetricsTieBreakers>
 </document>
