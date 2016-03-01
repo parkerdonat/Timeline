@@ -76,6 +76,12 @@ class LoginSignupViewController: UIViewController {
         }
     }
     
+    func updateWithUser(user: User) {
+        self.user = user
+        viewMode = .Edit
+    }
+
+    
     @IBAction func actionButtonTapped() {
         
         if fieldsAreValid {

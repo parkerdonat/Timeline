@@ -11,7 +11,7 @@ import Foundation
 class UserController {
     
     // returns the current user as an implicitly unwrapped optional. We are building an assumption that if there is no user, the login/signup screen will be presented until there is one.
-    var currentUser: User! = UserController.mockUsers().first
+    var currentUser: User! = UserController.mockUsers().first //nil
     
     static let sharedController = UserController()
     
@@ -27,6 +27,10 @@ class UserController {
         completion(success: true)
     }
     
+    static func unfollowUser(user: User, completion: (success: Bool) -> Void) {
+        completion(success: true)
+    }
+    
     static func userFollowsUser(user: User, followsUser: User, completion: (follows: Bool) -> Void ) {
         completion(follows: true)
     }
@@ -37,7 +41,7 @@ class UserController {
     
     // used to authenticate against Firebase database of users
     static func authenticateUser(email: String, password: String, completion: (success: Bool, user: User?) -> Void) {
-        completion(success: true, user: mockUsers().first)
+       completion(success: true, user: mockUsers().first)
     }
     
     // used to create a user in Firebase
@@ -50,6 +54,7 @@ class UserController {
     }
     
     static func logoutCurrentUser() {
+        UserController.sharedController.currentUser = nil
         
     }
     

@@ -8,11 +8,12 @@
 
 import UIKit
 
-class UserSearchTableViewController: UITableViewController {
+class UserSearchTableViewController: UITableViewController, UISearchResultsUpdating {
     
     
     //MARK: - Properties
     @IBOutlet weak var modeSegmentedControl: UISegmentedControl!
+    var searchController: UISearchController!
     
     // This array will hold the users that should be displayed in the table view. Only friends when displaying the friends list, and all users when adding a friend.
     var usersDataSource: [User] = []
@@ -45,13 +46,14 @@ class UserSearchTableViewController: UITableViewController {
         }
     }
     
+    
     //MARK: - View Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateViewBasedOnMode()
-        
+        setUpSearchController()
     }
     
     // This update method calls the above func closure in the enum in order to set the array of users or if no users exist to give an empty array. Plus, reloads the tableview.
@@ -72,70 +74,74 @@ class UserSearchTableViewController: UITableViewController {
         updateViewBasedOnMode()
     }
     
+    func setUpSearchController() {
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("UserSearchResultsTableViewController")
+        
+        searchController = UISearchController(searchResultsController: resultsController)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.sizeToFit()
+        searchController.hidesNavigationBarDuringPresentation = false
+        tableView.tableHeaderView = searchController.searchBar
+        
+        definesPresentationContext = true
+    }
     
+    //MARK: - UISearchResultsUpdating Protocol
+    
+    // Captures the text in the search bar and assigning the search controller's usersDataSource to a filtered array of User objects where the username contains the search term, then reload the result view's tableView.
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        // Force unwrap because we expect text
+        let searchTerm = searchController.searchBar.text!.lowercaseString
+        
+        let resultsViewController = searchController.searchResultsController as! UserSearchResultsTableViewController
+        
+        resultsViewController.usersResultsDataSource = usersDataSource.filter({$0.username.lowercaseString.containsString(searchTerm)})
+        resultsViewController.tableView.reloadData()
+        
+    }
     
     // MARK: - Table view data source
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return usersDataSource.count
     }
-
-
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("usernameCell", forIndexPath: indexPath)
         
         let user = usersDataSource[indexPath.row]
-
+        
         cell.textLabel?.text = user.username
-
+        
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    // capturing the indexPath of the cell, capturing the selected user, capturing and casting the destination view controller as a ProfileViewController, and assigning user to the destination view controller's property.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toProfileView" {
+            guard let cell = sender as? UITableViewCell else { return }
+            
+            if let indexPath = tableView.indexPathForCell(cell) {
+                
+                let user = usersDataSource[indexPath.row]
+                
+                let destinationViewController = segue.destinationViewController as? ProfileViewController
+                destinationViewController?.user = user
+                
+            } else if let indexPath = (searchController.searchResultsController as? UserSearchResultsTableViewController)?.tableView.indexPathForCell(cell) {
+                
+                let user = (searchController.searchResultsController as! UserSearchResultsTableViewController).usersResultsDataSource[indexPath.row]
+                
+                let destinationViewController = segue.destinationViewController as? ProfileViewController
+                destinationViewController?.user = user
+            }
+        }
     }
-    */
-
 }
