@@ -210,7 +210,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="258" id="ZBQ-KQ-hja">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="258" id="ZBQ-KQ-hja" customClass="PostTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="258"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZBQ-KQ-hja" id="AHk-L2-9hp">
@@ -230,13 +230,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vz0-ab-Dvq">
                                                     <rect key="frame" x="0.0" y="207" width="584" height="33"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1u-h1-1Oj">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1u-h1-1Oj">
                                                             <rect key="frame" x="0.0" y="0.0" width="292" height="33"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWh-iy-94p">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWh-iy-94p">
                                                             <rect key="frame" x="292" y="0.0" width="292" height="33"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="292" id="ckc-wI-U4a"/>
@@ -258,6 +258,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="commentsLabel" destination="BWh-iy-94p" id="lcB-cu-81e"/>
+                                    <outlet property="likesLabel" destination="W1u-h1-1Oj" id="ZlK-GY-XPN"/>
+                                    <outlet property="postImageView" destination="eHX-o5-YRs" id="ECw-SX-d3v"/>
                                     <segue destination="79o-cC-0Vn" kind="show" id="8d0-eG-NxV"/>
                                 </connections>
                             </tableViewCell>
@@ -274,6 +277,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="at1-8F-4oa">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="userRefreshedTable:" destination="kaq-jd-KVI" eventType="valueChanged" id="W6b-bs-Zyw"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOp-F6-0Xj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -326,7 +335,7 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="131"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Wk-wB-kfQ">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Wk-wB-kfQ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="110"/>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANt-pC-FLg">
@@ -355,6 +364,9 @@
                             <rect key="frame" x="0.0" y="267" width="600" height="39"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Add Comment"/>
+                            <connections>
+                                <action selector="addCommentTapped:" destination="79o-cC-0Vn" eventType="touchUpInside" id="iNY-0A-jcR"/>
+                            </connections>
                         </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" textLabel="6a6-U9-bre" detailTextLabel="ze9-IJ-ESK" style="IBUITableViewCellStyleSubtitle" id="JWR-yO-EpT">
@@ -388,8 +400,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Tr6-Yu-GHB">
-                        <barButtonItem key="rightBarButtonItem" title="Like" id="QF0-nD-oaA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Like" id="QF0-nD-oaA">
+                            <connections>
+                                <action selector="likeTapped:" destination="79o-cC-0Vn" id="cW6-YM-wYC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="commentsLabel" destination="rsU-qL-DjJ" id="qbU-iw-xfW"/>
+                        <outlet property="headerImageView" destination="3Wk-wB-kfQ" id="FEl-KG-Bbs"/>
+                        <outlet property="likesLabel" destination="yg6-qF-Lyu" id="2eV-ZM-feF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNn-F1-hon" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

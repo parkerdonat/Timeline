@@ -30,6 +30,7 @@
 		DD06EB8F1C84949A0020104A /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD06EB8E1C84949A0020104A /* ImageCollectionViewCell.swift */; };
 		DD10A9C61C7E745A006DF5CF /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD10A9C51C7E745A006DF5CF /* PostController.swift */; };
 		DD10A9C81C7E74ED006DF5CF /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD10A9C71C7E74ED006DF5CF /* ImageController.swift */; };
+		DD78AF961C86620000632E52 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD78AF951C86620000632E52 /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		DD06EB8E1C84949A0020104A /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD10A9C51C7E745A006DF5CF /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 		DD10A9C71C7E74ED006DF5CF /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
+		DD78AF951C86620000632E52 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				DD008C131C7D12B40060A1C5 /* UserSearchTableViewController.swift */,
 				DD06EB781C83E4580020104A /* UserSearchResultsTableViewController.swift */,
 				DD008C151C7D145B0060A1C5 /* ProfileViewController.swift */,
+				DD78AF951C86620000632E52 /* PostTableViewCell.swift */,
 				DD008C171C7D157E0060A1C5 /* AddPhotoTableViewController.swift */,
 				DD008C191C7D16DB0060A1C5 /* LoginSignupChoiceViewController.swift */,
 				DD008C1B1C7D17550060A1C5 /* LoginSignupViewController.swift */,
@@ -325,6 +328,7 @@
 				DD008C1A1C7D16DB0060A1C5 /* LoginSignupChoiceViewController.swift in Sources */,
 				DD008C181C7D157E0060A1C5 /* AddPhotoTableViewController.swift in Sources */,
 				DD06EB791C83E4580020104A /* UserSearchResultsTableViewController.swift in Sources */,
+				DD78AF961C86620000632E52 /* PostTableViewCell.swift in Sources */,
 				DD008C251C7D60E60060A1C5 /* Post.swift in Sources */,
 				DD06EB8F1C84949A0020104A /* ImageCollectionViewCell.swift in Sources */,
 				DD008C101C7D066A0060A1C5 /* TimelineTableViewController.swift in Sources */,
